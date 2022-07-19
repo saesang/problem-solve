@@ -9,7 +9,7 @@ vector<pair<int, int>> coord;
 int main(void) {
 	int N; cin >> N;
 
-	for (int i = 0; i < N; i++) { // coord에 (x, y) 저장
+	for (int i = 0; i < N; i++) { // coord에 (y, x) 저장
 		int x, y; cin >> x >> y;
 		coord.push_back(pair<int, int>(y, x));
 	}
