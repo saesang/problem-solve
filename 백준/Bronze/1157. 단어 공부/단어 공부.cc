@@ -7,7 +7,7 @@ using namespace std;
 
 map<char, int> m; // <알파벳, 사용 횟수>
 map<char, int>::iterator iter;
-vector<char> v; // 사용 횟수
+vector<pair<int, char>> v; // <사용 횟수, 알파벳>
 
 int main(void) {
 	string s; cin >> s;
@@ -17,21 +17,13 @@ int main(void) {
 		}
 		m[s[i]]++; // 해당 알파벳 사용 횟수 증가
 	}
-	for (iter = m.begin(); iter != m.end(); iter++) { // v에 알파벳 사용 횟수 저장
-		v.push_back(iter->second);
+	for (iter = m.begin(); iter != m.end(); iter++) { // v에 알파벳 별 사용 횟수 저장
+		v.push_back(make_pair(iter->second, iter->first));
 	}
 	sort(v.begin(), v.end()); // v 오름차순 정렬
 
-	if (v.size() == 1 || v[v.size() - 1] != v[v.size() - 2]) { // 최대 사용 횟수가 중복되는 알파벳이 없을 때
-		int maxCnt = 0; // 최대 사용 횟수
-		char result; // 최대 사용 알파벳
-		for (iter = m.begin(); iter != m.end(); iter++) {
-			if (iter->second >= maxCnt) {
-				maxCnt = iter->second;
-				result = iter->first;
-			}
-		}
-		cout << result;
+	if (v.size() == 1 || v[v.size() - 1].first != v[v.size() - 2].first) { // 최대 사용 횟수가 중복되는 알파벳이 없을 때
+		cout << v.back().second;
 	}
 	else cout << '?';
 
