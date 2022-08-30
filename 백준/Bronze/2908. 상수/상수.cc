@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<algorithm>
 using namespace std;
 
 int main(void) {
@@ -9,15 +10,9 @@ int main(void) {
 	string A, B; cin >> A >> B; // A와 B string으로 입력
 	
 	// 상수가 읽는 A
-	char tmpA;
-	tmpA = A[0];
-	A[0] = A[2];
-	A[2] = tmpA;
+	reverse(A.begin(), A.end());
 	// 상수가 읽는 B
-	char tmpB;
-	tmpB = B[0];
-	B[0] = B[2];
-	B[2] = tmpB;
+	reverse(B.begin(), B.end());
 
 	// A, B를 int로 변환
 	int AR = stoi(A);
