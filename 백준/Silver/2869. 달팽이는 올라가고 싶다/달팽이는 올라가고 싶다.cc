@@ -9,8 +9,7 @@ int main(void) {
 	int A, B, V; cin >> A >> B >> V;
 	int days = (V - A) / (A - B);
 
-	if ((V - A) % (A - B) > 0) days += 2;
-	else days++;
+	(V - A) % (A - B) > 0 ? days += 2 : days++;
 
 	cout << days;
 
