@@ -1,5 +1,3 @@
-import kotlin.math.ceil
-
 fun main() {
     val N = readlnOrNull() ?: return
     var cnts = Array(10) { 0 }
