@@ -1,18 +1,12 @@
 fun main() {
-    val inputs = readln().split(" ").map { it.toInt() }
-    val N = inputs[0]
-    val K = inputs[1]
-    var sCnt = Array(13) {0}    // n학년 여학생 수 idx = 2n - 1, n학년 남학생 수 idx = 2n
+    val (N, K) = readln().split(" ").map { it.toInt() }
+    var sCnt = Array(12) {0}    // n학년 여학생 수 idx = 2(n-1), n학년 남학생 수 idx = 2n-1
     var rCnt = 0    // 필요한 방의 수
 
     // sCnt에 학년 별, 성별에 따라 학생 수 입력
-    for (i in 1..N) {
-        var sInfo = readln().split(" ").map { it.toInt() }
-        if (sInfo[0] == 0) {
-            sCnt[2 * sInfo[1] - 1]++
-        } else {
-            sCnt[2 * sInfo[1]]++
-        }
+    repeat (N) {
+        var (S, Y) = readln().split(" ").map { it.toInt() }
+        sCnt[2 * (Y - 1) + S]++
     }
 
     // sCnt 탐색하며 방 개수 구하기
