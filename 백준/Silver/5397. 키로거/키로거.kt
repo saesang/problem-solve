@@ -39,8 +39,7 @@ fun main() {
             pwd.append(rightStack.first())
             rightStack.removeFirst()
         }
-        pwd.append("\n")
 
-        print(pwd.toString())
+        println(pwd.toString())
     }
 }
