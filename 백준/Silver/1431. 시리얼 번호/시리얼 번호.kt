@@ -7,11 +7,11 @@ fun main() {
         guitars.add(readln())
     }
 
-    guitars.sort()
-    guitars.sortBy { guitar ->
-        guitar.map { if (it.isDigit()) it.digitToInt() else 0 }.sum()
-    }
-    guitars.sortBy { it.length }
+    guitars.sortWith(
+        compareBy<String> { it.length }
+            .thenBy { guitar -> guitar.map { if (it.isDigit()) it.digitToInt() else 0 }.sum() }
+            .thenBy { it }
+    )
 
     guitars.forEach { sb.append(it).append("\n") }
 
