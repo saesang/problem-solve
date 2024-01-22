@@ -21,11 +21,12 @@ fun main() {
 }
 
 fun dfs(start: Int) {
+    if (start != 1) virus++
+    
     check[start] = true
+    
     for (c in graph[start].indices) {
         if (graph[start][c] == 1 && !check[c]) {
-            if (c != 1) virus++
-            check[c] = true
             dfs(c)
         }
     }
