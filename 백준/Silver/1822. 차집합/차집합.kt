@@ -1,10 +1,8 @@
-import java.util.TreeSet
-
 fun main() {
     val sb = StringBuilder()
     val (nA, nB) = readln().split(" ").map { it.toInt() }
-    val sA = TreeSet(readln().split(" ").map { it.toInt() })
-    val sB = TreeSet(readln().split(" ").map { it.toInt() })
+    val sA = readln().split(" ").map { it.toInt() }.toSortedSet()
+    val sB = readln().split(" ").map { it.toInt() }.toSortedSet()
 
     for (i in sB) {
         if (sA.contains(i)) sA.remove(i)
