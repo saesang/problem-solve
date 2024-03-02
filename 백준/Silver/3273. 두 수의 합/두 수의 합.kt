@@ -1,21 +1,23 @@
 fun main() {
     val n = readln().toInt()
-    // 정수 입력값 한 줄을 읽고, 공백 기준으로 분리한 후 int로 변경해서 nums에 저장
-    var nums = readLine()!!.split(" ").map { it.toInt() }
+    val nums = readln().split(" ").map {it.toInt()}.sorted()
     val x = readln().toInt()
-    var cnt = 0
 
-    nums = nums.sorted()
+    var sp = 0
+    var ep = nums.size - 1
+    var ans = 0
 
-    var start = 0
-    var end = n - 1
-
-    while (start < end) {
-        var sum = nums[start] + nums[end]
-
-        if (sum == x) { cnt++ }
-        if (sum <= x) { start++ } else { end-- }
+    while (sp < ep) {
+        if (nums[sp] + nums[ep] > x) {
+            ep--
+        } else if (nums[sp] + nums[ep] < x) {
+            sp++
+        } else {
+            ans++
+            sp++
+            ep--
+        }
     }
 
-    println(cnt)
+    println(ans)
 }
