@@ -1,30 +1,22 @@
 fun main() {
-    val N = readlnOrNull() ?: return
-    var cnts = Array(10) { 0 }
-    var mxCnt = 0
-    var result = 0
+    val n = readln()
+    val arr = Array(10) { 0 }
 
-    for (i in N.indices) {
-        if (N[i].digitToInt() == 6 || N[i].digitToInt() == 9) {
-            cnts[6]++   // 6 또는 9 나오면 cnts[6]에 합쳐서 카운트
+    var mx = 0
+    for (c in n) {
+        val num = c.digitToInt()
+
+        arr[num]++
+        mx = if (num == 6 || num == 9) {
+            if ((arr[6] + arr[9]) % 2 == 1) {
+                if ((arr[6] + arr[9]) / 2 + 1 <= mx) mx else (arr[6] + arr[9]) / 2 + 1
+            } else {
+                if ((arr[6] + arr[9]) / 2 <= mx) mx else (arr[6] + arr[9]) / 2
+            }
         } else {
-            cnts[N[i].digitToInt()]++
+            if (arr[num] <= mx) mx else arr[num]
         }
     }
 
-    if ((cnts[6] % 2) == 0) {
-        cnts[6] = cnts[6] / 2
-    } else {
-        cnts[6] = cnts[6] / 2 + 1
-    }
-
-    for (i in cnts.indices) {
-        if (mxCnt < cnts[i]) {
-            mxCnt = cnts[i]
-        }
-    }
-
-    result = mxCnt
-
-    println(result)
+    println(mx)
 }
