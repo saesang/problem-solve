@@ -1,4 +1,4 @@
-# <p align="center">BOJ-Solution</p>
+# <p align="center">Problem-Solve</p>
 
 ### <p align="center">✨ BOJ 티어</p>
 
