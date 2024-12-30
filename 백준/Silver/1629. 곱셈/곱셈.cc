@@ -1,28 +1,33 @@
 #include <iostream>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
-using ll = long long;
 
 /*
- * 풀이 과정
- * : 재귀
+ * A^2 % C = (A % C)*(A % C) % C
+ * A^B % C = (A^B/2 * A^B/2) % C
+ * : 위 조건을 이용하여 재귀로 해결
  */
 
-ll pow(ll a, ll b, ll c) {
-    if (b == 1) return a % c;   // 지수 == 1이면 바로 나머지 반환
-    ll val = pow(a, b/2, c);    // 지수/2인 pow 계산을 반복하여 지수 == 1일 때의 a % c 값 반환 받음 -> val = a % c
-    val = val * val % c;    // val = (a % c) * (a % c) % c -> 지수/2를 했으므로 다시 현재 지수*2
+long long pow(int a, int b, int c) {
+    if (b == 1) return a % c;
+    long long ans = pow(a, b/2, c); // A^B % C = (A^B/2 * A^B/2) % C
+    ans = ans * ans % c; // A^2 % C = (A % C)*(A % C) % C
 
-    if (b % 2 == 0) return val; // 지수/2 처리를 했을 떼 나머지가 없었으므로 그대로 val 반환
-    return val * a % c; // 지수/2 처리를 했을 때 나머지가 있었으므로 val * a % c 결과값 반환
+    if (b % 2 == 0) {
+        return ans;
+    } else {
+        return ans * a % c;
+    }
 }
 
 int main() {
-    ios::sync_with_stdio;
-    cin.tie(); cout.tie();
-    ll a,b,c;
-    cin >> a >> b >> c;
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
-    cout << pow(a, b, c);
+    int A, B, C;
+    cin >> A >> B >> C;
+
+    cout << pow(A, B, C);
 }
